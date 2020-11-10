@@ -1,16 +1,18 @@
 {
-  "name": "mapcore-gallery",
+  "name": "@mapcore/gallery",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build-dist": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "build-lib": "vue-cli-service build --target lib --name mapcore-gallery src/main.js",
+    "build": "vue-cli-service build --target lib --name mapcore-gallery src/main.js",
     "lint": "vue-cli-service lint"
   },
+  "main": "./dist/mapcore-gallery.common.js ",
   "dependencies": {
     "core-js": "^3.6.5",
+    "element-ui": "^2.14.0",
     "vue": "^2.6.11"
   },
   "devDependencies": {
