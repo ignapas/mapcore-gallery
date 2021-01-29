@@ -46,8 +46,8 @@
 </template>
 
 <script>
-import IndexIndicator from '@/components/IndexIndicator'
-import Card from '@/components/Card'
+import IndexIndicator from './IndexIndicator'
+import Card from './Card'
 
 function convertRemToPixels(rem) {
   return rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
