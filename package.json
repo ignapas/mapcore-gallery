@@ -1,6 +1,6 @@
 {
   "name": "@abi-software/gallery",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,7 +9,11 @@
     "build-package": "vue-cli-service build --target lib --name @abi-software/gallery src/main.js",
     "lint": "vue-cli-service lint"
   },
-  "main": "src/index.js ",
+  "main": "src/main.js ",
+  "files": [
+    "src",
+    "dist/*.js"
+  ],
   "dependencies": {
     "@babel/code-frame": "^7.12.11",
     "core-js": "^3.8.3",
