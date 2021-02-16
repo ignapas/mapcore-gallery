@@ -65,9 +65,9 @@ export default {
       if (this.data.type == '3D Image') {
         return require('../assets/3d_image_icon.svg')
       } else if (this.data.type == '3D Scaffold') {
-        return require('../assets/scaffold_image_icon.svg')
+        return require('~@/assets/scaffold_image_icon.svg')
       }
-      return require('../assets/2d_image_icon.svg')
+      return require('~@/assets/2d_image_icon.svg')
     },
   },
 }

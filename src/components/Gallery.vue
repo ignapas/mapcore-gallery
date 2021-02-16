@@ -50,7 +50,7 @@ import IndexIndicator from './IndexIndicator'
 import Card from './Card'
 
 function convertRemToPixels(rem) {
-  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
+  return rem * parseFloat(window.getComputedStyle(document.documentElement).fontSize)
 }
 
 export default {
