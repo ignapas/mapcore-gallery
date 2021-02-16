@@ -14,7 +14,7 @@
     "build-bundle": "vue-cli-service build --target lib --name @abi-software/gallery src/main.js",
     "lint": "vue-cli-service lint"
   },
-  "main": "src/index.js",
+  "main": "dist/@abi-software/gallery.common.js",
   "files": [
     "src",
     "dist/*.js"
