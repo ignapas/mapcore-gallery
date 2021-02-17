@@ -20,7 +20,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .indicator-container {
   display: flex;
   justify-content: center;
