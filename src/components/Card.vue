@@ -1,25 +1,19 @@
 <template>
   <el-card :body-style="{ padding: '0px' }" class="card">
     <img :src="data.thumbnail" alt="thumbnail missing" :style="`max-width: ${width}rem; height: ${imageHeight}rem`" />
-    <div class="image-overlay">
+    <div v-if="false" class="image-overlay">
       <div
         class="triangle-right-corner"
         :style="`border-left-width: ${triangleHeight * 1.2}rem; border-top-width: ${triangleHeight}rem;`"
         @click="$emit('view')"
       ></div>
       <el-tooltip class="item" :content="`View ${data.type}`" placement="left">
-        <svg class="triangle-icon">
-          <use
-            xlink:href="/assets/3d_image_icon.svg"
-            :style="`height: ${triangleHeight * 0.25}rem;top: ${triangleHeight * 0.15}rem;right: ${triangleHeight * 0.15}rem`"
-          />
-        </svg>
-        <!-- <img
+        <img
           class="triangle-icon"
           :style="`height: ${triangleHeight * 0.25}rem;top: ${triangleHeight * 0.15}rem;right: ${triangleHeight * 0.15}rem`"
           :src="typeIcon"
           @click="$emit('view')"
-        /> -->
+        />
       </el-tooltip>
     </div>
     <div v-if="showCardDetails" class="details" :style="`margin: ${marginDetails}rem`">
@@ -27,7 +21,6 @@
         <b>{{ data.type }}</b
         ><br />{{ data.title }}
       </p>
-      <svg-icon icon="fullScreen" />
       <el-button @click.prevent="$emit('view')">View {{ data.type }}</el-button>
     </div>
   </el-card>
