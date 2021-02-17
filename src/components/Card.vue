@@ -8,12 +8,18 @@
         @click="$emit('view')"
       ></div>
       <el-tooltip class="item" :content="`View ${data.type}`" placement="left">
-        <img
+        <svg class="triangle-icon">
+          <use
+            xlink:href="/assets/3d_image_icon.svg"
+            :style="`height: ${triangleHeight * 0.25}rem;top: ${triangleHeight * 0.15}rem;right: ${triangleHeight * 0.15}rem`"
+          />
+        </svg>
+        <!-- <img
           class="triangle-icon"
           :style="`height: ${triangleHeight * 0.25}rem;top: ${triangleHeight * 0.15}rem;right: ${triangleHeight * 0.15}rem`"
           :src="typeIcon"
           @click="$emit('view')"
-        />
+        /> -->
       </el-tooltip>
     </div>
     <div v-if="showCardDetails" class="details" :style="`margin: ${marginDetails}rem`">
@@ -21,14 +27,18 @@
         <b>{{ data.type }}</b
         ><br />{{ data.title }}
       </p>
+      <svg-icon icon="fullScreen" />
       <el-button @click.prevent="$emit('view')">View {{ data.type }}</el-button>
     </div>
   </el-card>
 </template>
 
 <script>
+// import { SvgIcon } from '@abi-software/svg-sprite'
+
 export default {
   name: 'GalleryCard',
+  // components: { SvgIcon },
   props: {
     data: {
       type: Object,
