@@ -1,5 +1,5 @@
 <template>
-  <el-card :body-style="{ padding: '0px' }" class="card">
+  <el-card :style="{ padding: '0px' }" class="card">
     <img :src="data.thumbnail" alt="thumbnail missing" :style="`max-width: ${width}rem; height: ${imageHeight}rem`" />
     <div v-if="false" class="image-overlay">
       <div
