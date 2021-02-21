@@ -1,10 +1,14 @@
 <template>
   <div ref="myButton" class="gallery">
     <div class="gallery-strip">
-      <a href="#" :class="['oval', 'prev', { disabled: !isPrevPossible }]" @click.prevent="goPrev">
+      <a
+        href="#"
+        :class="['oval', 'prev', { disabled: !isPrevPossible }]"
+        @click.prevent="goPrev"
+      >
         <span class="progress-button">&lsaquo;</span>
       </a>
-      <div class="filler"></div>
+      <div class="filler" />
       <div class="card-line">
         <span
           v-for="(item, index) in items"
@@ -12,36 +16,29 @@
           :style="{ display: displayState(index) }"
           :class="['key-image-span', { active: isActive(index) }]"
         >
-          <card :data="item" :width="cardWidth" :height="cardHeight" :show-card-details="showCardDetails" @view="onView" />
-          <!-- <nuxt-link  :style="`width: ${cardLineWidth}rem`"
-            v-slot="{ href }"
-            :to="{
-              name: getThumbnailLinkName(thumbnail_image),
-              params: getThumbnailLinkParams(thumbnail_image),
-              query: getThumbnailLinkQuery(thumbnail_image),
-            }"
-          >
-            <a target="_blank" :href="href" rel="noopener noreferrer">
-              <img
-                :ref="'key_image_' + thumbnail_image.id"
-                :src="thumbnail_image.img"
-                alt="thumbnail missing"
-                class="thumbnail thumbnail-100"
-                :height="slideNaturalHeight"
-                :width="slideNaturalWidth"
-              />
-            </a>
-          </nuxt-link> -->
-          <!-- <div class="overlay" :style="`background-color: ${imageOverlayColour(index)}`" /> -->
+          <card
+            :data="item"
+            :width="cardWidth"
+            :height="cardHeight"
+            :show-card-details="showCardDetails"
+          />
         </span>
       </div>
-      <div class="filler"></div>
-      <a href="#" :class="['oval', 'next', { disabled: !isNextPossible }]" @click.prevent="goNext">
+      <div class="filler" />
+      <a
+        href="#"
+        :class="['oval', 'next', { disabled: !isNextPossible }]"
+        @click.prevent="goNext"
+      >
         <span class="progress-button">&rsaquo;</span>
       </a>
     </div>
-    <div v-if="showIndicatorBar" class="bottom-spacer"></div>
-    <index-indicator v-if="showIndicatorBar" :count="itemCount" :current="currentIndex" />
+    <div v-if="showIndicatorBar" class="bottom-spacer" />
+    <index-indicator
+      v-if="showIndicatorBar"
+      :count="itemCount"
+      :current="currentIndex"
+    />
   </div>
 </template>
 
@@ -50,10 +47,9 @@ import IndexIndicator from './IndexIndicator'
 import Card from './Card'
 
 function convertRemToPixels(rem) {
-  // console.log('0000 0000')
-  // console.log(window)
-  // console.log(window.document)
-  return rem * 16 //parseFloat(window.getComputedStyle(window.document.documentElement).fontSize)
+  return (
+    rem * parseFloat(window.getComputedStyle(document.documentElement).fontSize)
+  )
 }
 
 export default {
@@ -64,45 +60,48 @@ export default {
       type: Array,
       default: () => {
         return []
-      },
+      }
     },
     maxWidth: {
       type: Number,
-      default: 3,
+      required: true
+    },
+    cardWidth: {
+      type: Number,
+      default: 13.8
     },
     showIndicatorBar: {
       type: Boolean,
-      default: true,
+      default: true
     },
     highlightActive: {
       type: Boolean,
-      default: true,
+      default: true
     },
     showCardDetails: {
       type: Boolean,
-      default: true,
+      default: true
     },
     metaData: {
       type: Object,
       default: () => {
         return {
           datasetVersion: -1,
-          datasetId: -1,
+          datasetId: -1
         }
-      },
+      }
     },
     description: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
   data() {
     return {
       count: 0,
       currentIndex: 0,
       controlHeight: 2,
-      controlWidth: 2,
-      cardWidth: 21,
+      controlWidth: 2
     }
   },
   computed: {
@@ -125,29 +124,16 @@ export default {
     numberOfItemsVisible() {
       // The maximum width we are allowed minus two buttons for next and previous
       // divided by the width of a card.
-      const n = this.itemCount - 1
+      // const n = this.itemCount - 1
       const cardSpacingPx = convertRemToPixels(0.5)
       const buttonPx = convertRemToPixels(2)
       const cardWidthPx = convertRemToPixels(this.cardWidth)
-      let itemsVisibleRough = 1
-      let i = 0
-      while (i < n) {
-        const roomRequired = itemsVisibleRough * cardWidthPx + 2 * buttonPx + itemsVisibleRough * cardSpacingPx
-        if (roomRequired < this.maxWidth) {
-          itemsVisibleRough += 1
-        } else {
-          i = n
-        }
-        i += 1
-      }
-
-      return itemsVisibleRough
-    },
+      const cardItems =
+        (this.maxWidth - 2 * buttonPx - 2 * cardSpacingPx) / (1.1 * cardWidthPx)
+      return Math.floor(cardItems)
+    }
   },
   methods: {
-    onView() {
-      console.log('view in viewer.')
-    },
     isActive(index) {
       return this.currentIndex === index && this.highlightActive
     },
@@ -184,8 +170,8 @@ export default {
       }
 
       return indecies.includes(index) ? undefined : 'none'
-    },
-  },
+    }
+  }
 }
 </script>
 
@@ -198,6 +184,9 @@ export default {
   border: solid 1px var(--pale-grey);
   background-color: #ffffff;
   border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  user-select: none;
 }
 
 .gallery-strip,
@@ -232,12 +221,6 @@ export default {
 a.prev:not(.underline),
 a.next:not(.underline) {
   text-decoration: none;
-}
-a.prev {
-  justify-content: flex-start;
-}
-a.next {
-  justify-content: flex-end;
 }
 
 .disabled {
