@@ -14,7 +14,7 @@
     "build-bundle": "vue-cli-service build --target lib --name gallery src/main.js",
     "lint": "vue-cli-service lint"
   },
-  "main": "src/index.js",
+  "main": "dist/gallery.common.js",
   "dependencies": {
     "@abi-software/svg-sprite": "^0.1.11",
     "@babel/code-frame": "^7.12.11",

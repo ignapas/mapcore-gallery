@@ -5,23 +5,13 @@
       <div v-if="false" class="image-overlay">
         <div
           class="triangle-right-corner"
-          :style="
-            `border-left-width: ${triangleHeight *
-              1.2}rem; border-top-width: ${triangleHeight}rem;`
-          "
+          :style="`border-left-width: ${triangleHeight * 1.2}rem; border-top-width: ${triangleHeight}rem;`"
           @click="openLinkInNewTab"
         />
-        <el-tooltip
-          class="item"
-          :content="`View ${data.type}`"
-          placement="left"
-        >
+        <el-tooltip class="item" :content="`View ${data.type}`" placement="left">
           <img
             class="triangle-icon"
-            :style="
-              `height: ${triangleHeight * 0.25}rem;top: ${triangleHeight *
-                0.15}rem;right: ${triangleHeight * 0.15}rem`
-            "
+            :style="`height: ${triangleHeight * 0.25}rem;top: ${triangleHeight * 0.15}rem;right: ${triangleHeight * 0.15}rem`"
             :src="typeIcon"
             @click="openLinkInNewTab"
           />
@@ -36,9 +26,7 @@
             {{ data.title }}
           </p>
         </el-tooltip>
-        <el-button @click.prevent="openLinkInNewTab">
-          View {{ data.type }}
-        </el-button>
+        <el-button @click.prevent="openLinkInNewTab"> View {{ data.type }}</el-button>
       </div>
     </div>
   </el-card>
@@ -53,24 +41,24 @@ export default {
   props: {
     data: {
       type: Object,
-      required: true
+      required: true,
     },
     width: {
       type: Number,
-      default: 3
+      default: 3,
     },
     height: {
       type: Number,
-      default: 3
+      default: 3,
     },
     showCardDetails: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   data() {
     return {
       ro: null,
-      triangleSize: 4
+      triangleSize: 4,
     }
   },
   computed: {
@@ -95,8 +83,8 @@ export default {
       // } else if (this.data.type == '3D Scaffold') {
       //   return require('../assets/scaffold_image_icon.svg')
       // }
-      return require('@/assets/data-icon.png')
-    }
+      return undefined // require('@/assets/data-icon.png')
+    },
   },
   methods: {
     openLinkInNewTab() {
@@ -107,8 +95,8 @@ export default {
       document.body.appendChild(link)
       link.click()
       link.remove()
-    }
-  }
+    },
+  },
 }
 </script>
 

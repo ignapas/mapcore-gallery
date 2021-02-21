@@ -1,10 +1,6 @@
 <template>
   <div class="indicator-container">
-    <div
-      v-for="(number, index) in count"
-      :key="'indicator_' + number"
-      :class="['indicator', { active: current === index }]"
-    />
+    <div v-for="(number, index) in count" :key="'indicator_' + number" :class="['indicator', { active: current === index }]" />
   </div>
 </template>
 
@@ -14,13 +10,13 @@ export default {
   props: {
     count: {
       type: Number,
-      default: 0
+      default: 0,
     },
     current: {
       type: Number,
-      default: 0
-    }
-  }
+      default: 0,
+    },
+  },
 }
 </script>
 

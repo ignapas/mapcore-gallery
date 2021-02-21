@@ -1,11 +1,7 @@
 <template>
   <div ref="myButton" class="gallery">
     <div class="gallery-strip">
-      <a
-        href="#"
-        :class="['oval', 'prev', { disabled: !isPrevPossible }]"
-        @click.prevent="goPrev"
-      >
+      <a href="#" :class="['oval', 'prev', { disabled: !isPrevPossible }]" @click.prevent="goPrev">
         <span class="progress-button">&lsaquo;</span>
       </a>
       <div class="filler" />
@@ -16,29 +12,16 @@
           :style="{ display: displayState(index) }"
           :class="['key-image-span', { active: isActive(index) }]"
         >
-          <card
-            :data="item"
-            :width="cardWidth"
-            :height="cardHeight"
-            :show-card-details="showCardDetails"
-          />
+          <card :data="item" :width="cardWidth" :height="cardHeight" :show-card-details="showCardDetails" />
         </span>
       </div>
       <div class="filler" />
-      <a
-        href="#"
-        :class="['oval', 'next', { disabled: !isNextPossible }]"
-        @click.prevent="goNext"
-      >
+      <a href="#" :class="['oval', 'next', { disabled: !isNextPossible }]" @click.prevent="goNext">
         <span class="progress-button">&rsaquo;</span>
       </a>
     </div>
     <div v-if="showIndicatorBar" class="bottom-spacer" />
-    <index-indicator
-      v-if="showIndicatorBar"
-      :count="itemCount"
-      :current="currentIndex"
-    />
+    <index-indicator v-if="showIndicatorBar" :count="itemCount" :current="currentIndex" />
   </div>
 </template>
 
@@ -47,9 +30,10 @@ import IndexIndicator from './IndexIndicator'
 import Card from './Card'
 
 function convertRemToPixels(rem) {
-  return (
-    rem * parseFloat(window.getComputedStyle(document.documentElement).fontSize)
-  )
+  if (typeof window !== 'undefined') {
+    return rem * parseFloat(window.getComputedStyle(document.documentElement).fontSize)
+  }
+  return rem * 16
 }
 
 export default {
@@ -60,48 +44,48 @@ export default {
       type: Array,
       default: () => {
         return []
-      }
+      },
     },
     maxWidth: {
       type: Number,
-      required: true
+      required: true,
     },
     cardWidth: {
       type: Number,
-      default: 13.8
+      default: 13.8,
     },
     showIndicatorBar: {
       type: Boolean,
-      default: true
+      default: true,
     },
     highlightActive: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showCardDetails: {
       type: Boolean,
-      default: true
+      default: true,
     },
     metaData: {
       type: Object,
       default: () => {
         return {
           datasetVersion: -1,
-          datasetId: -1
+          datasetId: -1,
         }
-      }
+      },
     },
     description: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   data() {
     return {
       count: 0,
       currentIndex: 0,
       controlHeight: 2,
-      controlWidth: 2
+      controlWidth: 2,
     }
   },
   computed: {
@@ -128,10 +112,9 @@ export default {
       const cardSpacingPx = convertRemToPixels(0.5)
       const buttonPx = convertRemToPixels(2)
       const cardWidthPx = convertRemToPixels(this.cardWidth)
-      const cardItems =
-        (this.maxWidth - 2 * buttonPx - 2 * cardSpacingPx) / (1.1 * cardWidthPx)
+      const cardItems = (this.maxWidth - 2 * buttonPx - 2 * cardSpacingPx) / (1.1 * cardWidthPx)
       return Math.floor(cardItems)
-    }
+    },
   },
   methods: {
     isActive(index) {
@@ -170,8 +153,8 @@ export default {
       }
 
       return indecies.includes(index) ? undefined : 'none'
-    }
-  }
+    },
+  },
 }
 </script>
 
