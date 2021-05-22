@@ -21,7 +21,7 @@
       </a>
     </div>
     <div v-if="showIndicatorBar" class="bottom-spacer" />
-    <index-indicator v-if="showIndicatorBar" :count="itemCount" :current="currentIndex" />
+    <index-indicator v-if="showIndicatorBar" :count="itemCount" :current="currentIndex" @clicked="indicatorClicked" />
   </div>
 </template>
 
@@ -153,6 +153,11 @@ export default {
       }
 
       return indecies.includes(index) ? undefined : 'none'
+    },
+    indicatorClicked(index) {
+      if (this.currentIndex !== index) {
+        this.currentIndex = index
+      }
     },
   },
 }
