@@ -21,7 +21,7 @@
         <p>
           <b>{{ data.type }}</b>
         </p>
-        <el-tooltip :content="data.title">
+        <el-tooltip :content="data.title" placement="top">
           <p class="title">
             {{ data.title }}
           </p>
@@ -33,11 +33,8 @@
 </template>
 
 <script>
-// import { SvgIcon } from '@abi-software/svg-sprite'
-
 export default {
   name: 'GalleryCard',
-  // components: { SvgIcon },
   props: {
     data: {
       type: Object,
@@ -78,12 +75,7 @@ export default {
       return this.height * 0.076
     },
     typeIcon() {
-      // if (this.data.type == '3D Image') {
-      //   return require('../assets/3d_image_icon.svg')
-      // } else if (this.data.type == '3D Scaffold') {
-      //   return require('../assets/scaffold_image_icon.svg')
-      // }
-      return undefined // require('@/assets/data-icon.png')
+      return undefined
     },
   },
   methods: {
