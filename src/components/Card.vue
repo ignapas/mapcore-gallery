@@ -81,7 +81,6 @@ export default {
   methods: {
     openLinkInNewTab() {
       const link = document.createElement('a')
-      console.log(this.data.link)
       link.href = this.data.link
       link.target = '_blank'
       document.body.appendChild(link)
