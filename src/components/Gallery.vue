@@ -6,12 +6,7 @@
       </a>
       <div class="filler" />
       <div class="card-line">
-        <span
-          v-for="(item, index) in items"
-          :key="'card_' + index"
-          :style="{ display: displayState(index) }"
-          :class="['key-image-span', { active: isActive(index) }]"
-        >
+        <span v-for="(item, index) in windowedItems" :key="'card_' + index" :class="['key-image-span', { active: isActive(index) }]">
           <card :data="item" :width="cardWidth" :height="cardHeight" :show-card-details="showCardDetails" />
         </span>
       </div>
@@ -115,10 +110,28 @@ export default {
       const cardItems = (this.maxWidth - 2 * buttonPx - 2 * cardSpacingPx) / (1.1 * cardWidthPx)
       return Math.floor(cardItems)
     },
+    valueAdjustment() {
+      const halfWindow = Math.floor(this.numberOfItemsVisible / 2)
+      let valueAdjust = this.currentIndex - halfWindow
+      if (valueAdjust < 0) {
+        valueAdjust = 0
+      } else if (valueAdjust + this.numberOfItemsVisible > this.itemCount) {
+        valueAdjust = this.itemCount - this.numberOfItemsVisible
+      }
+
+      return valueAdjust
+    },
+    windowedItems() {
+      let myArray = []
+      for (let i = 0; i < this.numberOfItemsVisible; i++) {
+        myArray.push(this.items[i + this.valueAdjustment])
+      }
+      return myArray
+    },
   },
   methods: {
     isActive(index) {
-      return this.currentIndex === index && this.highlightActive
+      return this.currentIndex - this.valueAdjustment === index && this.highlightActive
     },
     goNext() {
       this.currentIndex += 1
