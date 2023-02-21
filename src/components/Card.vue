@@ -23,7 +23,7 @@
         </p>
         <el-tooltip :content="data.title" placement="top">
           <p class="title">
-            {{ data.title }}
+            ESTO VA DE SOBRA {{ data.title }}
           </p>
         </el-tooltip>
         <el-button @click.prevent="openLinkInNewTab"> View {{ data.type }}</el-button>
